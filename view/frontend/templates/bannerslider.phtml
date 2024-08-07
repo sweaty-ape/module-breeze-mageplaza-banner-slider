@@ -1,0 +1,39 @@
+<?php
+
+use Mageplaza\BannerSlider\Model\Config\Source\Type;
+
+$banners = $block->getBannerCollection();
+$bannerCount = is_array($banners) ? count($banners) : $banners->getSize();
+
+if ($bannerCount === 0) {
+    return;
+}
+
+?>
+
+<div data-content-type="slider" data-mage-init='{"Magento_PageBuilder/js/content-type/slider/appearance/default/widget":{"arrows":true,"dots":true}}'>
+    <div class="slick-list">
+        <?php foreach ($banners as $banner): ?>
+            <?php
+            $type = $banner->getType();
+            $title = $banner->getTitle();
+            $url = $banner->getUrlBanner();
+            $imageUrl = $banner->getImageUrl();
+
+            if (($type === Type::CONTENT && empty($banner->getContent())) ||
+                ($type === Type::IMAGE && empty($banner->getImage()))) {
+                continue;
+            }
+
+            if ($type !== Type::IMAGE) {
+                continue;   
+            }
+            ?>
+            <div>
+                <a href="<?= $block->escapeUrl($url) ?>">
+                    <img width="1000" src="<?= $block->escapeUrl($imageUrl) ?>" alt="<?= $block->escapeHtml($title) ?>" />
+                </a>
+            </div>
+        <? endforeach; ?>
+    </div>
+</div>

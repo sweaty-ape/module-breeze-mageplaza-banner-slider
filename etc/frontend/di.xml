@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Mageplaza\BannerSlider\Block\Slider">
+        <plugin name="sweatyape_breeze_mageplaza" type="SweatyApe\BreezeMageplazaBannerSlider\Plugin\Slider"/>
+    </type>
+</config>
