@@ -19,6 +19,7 @@ if ($bannerCount === 0) {
             $title = $banner->getTitle();
             $url = $banner->getUrlBanner();
             $imageUrl = $banner->getImageUrl();
+            $newTab = $banner->getNewtab() === '1';
 
             if (($type === Type::CONTENT && empty($banner->getContent())) ||
                 ($type === Type::IMAGE && empty($banner->getImage()))) {
@@ -26,14 +27,14 @@ if ($bannerCount === 0) {
             }
 
             if ($type !== Type::IMAGE) {
-                continue;   
+                continue;
             }
             ?>
             <div>
-                <a href="<?= $block->escapeUrl($url) ?>">
-                    <img width="1000" src="<?= $block->escapeUrl($imageUrl) ?>" alt="<?= $block->escapeHtml($title) ?>" />
+                <a href="<?= $block->escapeUrl($url) ?>" <?= $newTab ? 'target="_blank"' : '' ?>>
+                    <img src="<?= $block->escapeUrl($imageUrl) ?>" alt="<?= $block->escapeHtml($title) ?>" />
                 </a>
             </div>
-        <? endforeach; ?>
+        <?php endforeach; ?>
     </div>
 </div>
