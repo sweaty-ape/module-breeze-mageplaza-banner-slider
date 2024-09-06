@@ -9,9 +9,11 @@ if ($bannerCount === 0) {
     return;
 }
 
+$imageHelper = $this->helper('SweatyApe\BreezeMageplazaBannerSlider\Helper\BannerImage');
+
 ?>
 
-<div data-content-type="slider" data-mage-init='{"Magento_PageBuilder/js/content-type/slider/appearance/default/widget":{"arrows":true,"dots":true}}'>
+<div data-content-type="slider" data-mage-init='{"Magento_PageBuilder/js/content-type/slider/appearance/default/widget":{"arrows":true,"dots":true,"infinite":true}}'>
     <div class="slick-list">
         <?php foreach ($banners as $banner): ?>
             <?php
@@ -29,10 +31,12 @@ if ($bannerCount === 0) {
             if ($type !== Type::IMAGE) {
                 continue;
             }
+
+            $image = $imageHelper->getBannerImage($banner);
             ?>
             <div>
                 <a href="<?= $block->escapeUrl($url) ?>" <?= $newTab ? 'target="_blank"' : '' ?>>
-                    <img src="<?= $block->escapeUrl($imageUrl) ?>" alt="<?= $block->escapeHtml($title) ?>" />
+                    <img src="<?= $block->escapeUrl($imageUrl) ?>" width="<?= $image->getOriginalWidth() ?>" height="<?= $image->getOriginalHeight() ?>" alt="<?= $block->escapeHtml($title) ?>" />
                 </a>
             </div>
         <?php endforeach; ?>
