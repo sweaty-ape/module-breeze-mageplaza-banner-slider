@@ -36,7 +36,7 @@ $imageHelper = $this->helper('SweatyApe\BreezeMageplazaBannerSlider\Helper\Banne
             ?>
             <div>
                 <a href="<?= $block->escapeUrl($url) ?>" <?= $newTab ? 'target="_blank"' : '' ?>>
-                    <img src="<?= $block->escapeUrl($imageUrl) ?>" width="<?= $image->getOriginalWidth() ?>" height="<?= $image->getOriginalHeight() ?>" alt="<?= $block->escapeHtml($title) ?>" />
+                    <img src="<?= $block->escapeUrl($imageUrl) ?>" width="<?= $image->getOriginalWidth() ?>" height="<?= $image->getOriginalHeight() ?>" alt="<?= $block->escapeHtml($title) ?>" loading="lazy" />
                 </a>
             </div>
         <?php endforeach; ?>
